@@ -55,15 +55,17 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain() {
 
         leftFrontMotorController = new CANSparkMax(DriveConstants.LEFT_FRONT_MOTOR_ID,MotorType.kBrushless);
-        
-        System.out.print(leftBackMotorController);
         rightFrontMotorController = new CANSparkMax(DriveConstants.RIGHT_FRONT_MOTOR_ID,MotorType.kBrushless);
         leftBackMotorController = new CANSparkMax(DriveConstants.LEFT_BACK_MOTOR_ID,MotorType.kBrushless);
         rightBackMotorController = new CANSparkMax(DriveConstants.RIGHT_BACK_MOTOR_ID,MotorType.kBrushless);
-        leftFrontMotorController.setInverted(true);
-        leftBackMotorController.setInverted(true);
-        rightFrontMotorController.setInverted(false);
-        rightBackMotorController.setInverted(false);
+
+        leftFrontMotorController.restoreFactoryDefaults();
+        rightFrontMotorController.restoreFactoryDefaults();
+        leftBackMotorController.restoreFactoryDefaults();
+        rightBackMotorController.restoreFactoryDefaults();
+
+        leftFrontMotorController.setInverted(false);
+        rightFrontMotorController.setInverted(true);
 
         //sets motor controllers following leaders
         leftBackMotorController.follow(leftFrontMotorController);
@@ -121,8 +123,8 @@ public class DriveTrain extends SubsystemBase {
 
     public void setMotors(double leftSpeed, double rightSpeed) {
 
-        leftFrontMotorController.set(-leftSpeed*Constants.DriveConstants.SLOWING_SPEED);
-        rightFrontMotorController.set(-rightSpeed*Constants.DriveConstants.SLOWING_SPEED);
+        leftFrontMotorController.set(leftSpeed*Constants.DriveConstants.SLOWING_SPEED);
+        rightFrontMotorController.set(rightSpeed*Constants.DriveConstants.SLOWING_SPEED);
         //leftBackMotorController.set(leftSpeed);
        
         leftSpeedNTE.setDouble(leftSpeed);
