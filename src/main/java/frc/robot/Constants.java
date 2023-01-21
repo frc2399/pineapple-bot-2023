@@ -27,8 +27,10 @@ public class Constants {
         public static final double BUTTERY_FOLLOWING_SPEED = 0.035;
 
         // encoder 
-       public static final double HIGH_TORQUE_REVOLUTION_TO_INCH_CONVERSION = 2.317175948;
-       public static final double HIGH_SPEED_REVOLUTION_TO_INCH_CONVERSION = 1.048247093;
+       public static final double ENCODER_RATIO_METERS = 0.0329;
+
+       // track width
+       public static final double TRACK_WIDTH_METERS = 0.78053;
 
 
         public static final double TURN_TO_HUB_KP = 0.005;

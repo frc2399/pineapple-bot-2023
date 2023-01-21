@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import frc.robot.Constants.DriveConstants;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;;
 /**
  here's the drive train class that operates the drive train
@@ -25,6 +26,8 @@ public class DriveTrain extends SubsystemBase {
     private static CANSparkMax rightFrontMotorController;
     private static CANSparkMax leftBackMotorController;
     private static CANSparkMax rightBackMotorController;
+    public static RelativeEncoder leftEncoder;
+    public static RelativeEncoder rightEncoder;
     public static PIDController turnController;
     public final double kP = 0.06;
     public final double kPSim = 0.5;
@@ -67,6 +70,15 @@ public class DriveTrain extends SubsystemBase {
         leftFrontMotorController.setInverted(false);
         rightFrontMotorController.setInverted(true);
 
+        leftEncoder = leftFrontMotorController.getEncoder();
+        rightEncoder = rightFrontMotorController.getEncoder();
+
+        leftEncoder.setPosition(0);
+        rightEncoder.setPosition(0);
+
+        leftEncoder.setPositionConversionFactor(Constants.DriveConstants.ENCODER_RATIO_METERS);
+        rightEncoder.setPositionConversionFactor(Constants.DriveConstants.ENCODER_RATIO_METERS);
+
         //sets motor controllers following leaders
         leftBackMotorController.follow(leftFrontMotorController);
         rightBackMotorController.follow(rightFrontMotorController);
@@ -91,6 +103,7 @@ public class DriveTrain extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        
     }
 
 
