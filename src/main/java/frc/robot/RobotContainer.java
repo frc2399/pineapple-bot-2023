@@ -20,6 +20,7 @@ import frc.robot.Constants.JoystickConstants;
 import frc.robot.Constants.XboxConstants;
 // import frc.robot.commands.robot.PointAndShoot;
 import frc.robot.Constants.XboxMappingToJoystick;
+import frc.robot.commands.CurvatureDriveCmd;
 
 
 /**
@@ -95,9 +96,10 @@ public class RobotContainer {
 
         
         m_driveTrain.setDefaultCommand(
-            new ArcadeDriveCmd(m_driveTrain,
+            new CurvatureDriveCmd(m_driveTrain,
                 () -> -driveTurnControls.getDrive(),
-                () -> driveTurnControls.getTurn()));
+                () -> driveTurnControls.getTurn(), 
+                () -> XBOX.getRawButton(6)));
 
 
        
