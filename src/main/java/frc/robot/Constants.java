@@ -28,6 +28,15 @@ public class Constants {
 
         // encoder 
        public static final double ENCODER_RATIO_METERS = 0.0329;
+        
+        //sysid
+        public static final double CARPET_KS = 0.10432;
+        public static final double CARPET_KV = 3.7701;
+        public static final double CARPET_KA = 1.4718;
+
+        public static final double FLOOR_KS = 0.074291;
+        public static final double FLOOR_KV = 3.7013;
+        public static final double FLOOR_KA = 2.3911;
 
        // track width
        public static final double TRACK_WIDTH_METERS = 0.78053;
